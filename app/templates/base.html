@@ -1,0 +1,52 @@
+<!-- /templates/base.html -->
+
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Welcome Page</title>
+</head>
+<body>
+    <div class = 'main-page'>
+        <div class='pic-switch'>
+            <div id="images">
+                <!-- change pictures -->
+                <img class="active" id="image0" src="../static/src/0.gif"/>
+                <img id="image1" src="../static/src/1.gif"/>
+                <script type="text/javascript">
+                    window.onload = function(){
+                        switchShow();
+                    };
+                </script>
+            </div>
+        </div>     
+        {% block content %}
+        <div class = 'main-part'>
+            <h1> Login </h1>
+            <div class = 'login-part'>
+                {% from 'bootstrap/form.html' import render_form %}
+                {{ render_form(form) }}
+            </div>
+            <div class = 'register-part'>
+                <a> Don't have account? </a>
+                <a id="register" href="/register">Sign up</a>
+            </div>
+        </div>
+        {% endblock %}
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-primary" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='custom.js')}}"></script>
+</body>
+</html>

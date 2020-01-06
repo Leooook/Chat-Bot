@@ -1,0 +1,12 @@
+<!-- /templates/register.html -->
+{% extends 'base.html' %} {% block content %}
+<div class = 'main-part'>
+    <h1 style="margin-bottom: 27px;">Register</h1>
+    {% from 'bootstrap/form.html' import render_form %}
+    {{ render_form(form) }}
+    <div class = 'to-login'>
+        <a> Already have an account? </a>
+        <a id="login" href="/">Login</a>
+    </div>
+</div>
+{% endblock %}

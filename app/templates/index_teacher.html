@@ -1,0 +1,156 @@
+<!-- /templates/index_student.html -->
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>ChatBot</title>
+</head>
+<body>
+    <script type="text/javascript">
+        var Server = {
+            docontent:{{info|tojson}}
+  	    };
+        window.onload = function(){
+            var fun = say_hello;
+            fun()
+            var fun1 = question_satistics;
+            fun1()
+            var fun2 = upload_id;
+            fun2()
+        }
+	</script>
+    <div class="main-page">
+        <div class="whole-part">
+            <div class="info-part" id="info_part">
+                <div class="user-profile">
+                    <h1 id="my_heading" class="my-heading"> ChatBot </h1>
+                </div>
+                <div class="change-profile" id="recent_question">
+                    <h2 class="my-heading2"> Questions statistics </h2>
+                    <div id="na" style="display:none">
+                        <h2 class="my-heading5"> You have no questions statistics, please click 'My courses' to select your courses first.</h2>
+                    </div>
+                    <div class="qa">
+                        <h2 class="my-heading4" id="cc1"></h2>
+                        <div class="sat" id="q11"></div>
+                        <div class="sat" id="a11"></div>
+                        <div class="sats" id="s11"></div>
+                        <h2 class="my-heading4" id="cc2"></h2>
+                        <div class="sat" id="q21"></div>
+                        <div class="sat" id="a21"></div>
+                         <div class="sats" id="s21"></div>
+                        <h2 class="my-heading4" id="cc3"></h2>
+                        <div class="sat" id="q31"></div>
+                        <div class="sat" id="a31"></div>
+                         <div class="sats" id="s31"></div>
+                    </div>
+                </div>
+                <div class="change-profile" id="user_detail" style="display:none">
+                    <h2 class="my-heading1"> User Detail </h2>
+                    <div class="info">
+                        <div class="my-info1" id="show_name"></div>
+                        <div class="my-info1" id="show_zid"></div>
+                        <div class="my-info1" id="show_email"></div>
+                        <div class="my-info1" id="show_type"></div>
+                    </div>
+                    <button class="return1" onclick="return1()" type="button"/>
+                </div>
+                <div class="change-profile" id="my_class" style="display:none">
+                    <h2 class="my-heading1" id="my_c" style="display:none"> My Courses </h2>
+                    <div class="first-classes" id="first_classes" style="display:none">
+                        <div class="my-info4"> Dear staff, pelase select the courses you are teach in this term.</div>
+                        <div class="my-ver3"> (They are can not be modified.)</div> 
+                        <div class="my-info5"> Course One : </div>
+                        <input class="input-profile2" type="text" id="cl1" />
+                        <div class="my-info5"> Course Two : </div>
+                        <input class="input-profile2" type="text" id="cl2" />
+                        <div class="my-info5"> Course Three : </div>
+                        <input class="input-profile2" type="text" id="cl3" />
+                        <div class="info-error" id="course_error"> </div>
+                        <button class="submit-profile4" onclick="submit_class_t()" type="button"> Submit </button>
+                    </div>
+                    <div class="already-classes" id="already_classes" style="display:none">
+                        <div class="my-info6" id="c1"></div>
+                        <div class="my-info6" id="c2"></div>
+                        <div class="my-info6" id="c3"></div>
+                    </div>               
+                    <button class="return4" onclick="return4()" type="button"/>
+                </div>
+                <div class="change-profile" id="edit_profile" style="display:none">
+                    <div class="change-part">
+                        <div class="change" onclick="change_name()"> Change Name </div>
+                        <div class="change" onclick="change_email()"> Change Email </div>
+                        <div class="change" onclick="change_passwd()"> Change Password </div>
+                    </div>
+                    <div class="change-do-part">
+                        <div class="success" id="success" style="display:none"> Success! </div>
+                        <div id="new_name" style="display:none"> 
+                            <div class="my-info2"> Input your new name : </div>
+                            <input class="input-profile" type="text" id="input_name" />
+                            <div class="info-error" id="name_error"></div>
+                            <button class="submit-profile1" onclick="submit_name_t()" type="button"> Submit </button>
+                        </div>
+                        <div id="new_email" style="display:none"> 
+                            <div class="my-info2"> Input your new email : </div>
+                            <input class="input-profile" type="text" id="input_email" />
+                            <div class="info-error" id="email_error"></div>
+                            <button class="submit-profile2" onclick="submit_email_t()" type="button"> Submit </button>
+                        </div>
+                        <div id="new_passwd" style="display:none"> 
+                            <div class="my-info3"> Input your old password : </div>
+                            <input class="input-profile" id="input_old_passwd" type="password" />
+                            <div class="info-error" id="passwd_error_1">  </div>
+                            <div class="my-info3"> Input your new password : </div>
+                            <input class="input-profile" id="input_new_passwd" type="password" />
+                            <div class="info-error" id="passwd_error_2"> </div>
+                            <button class="submit-profile3" onclick="submit_passwd_t()" type="button"> Submit </button>
+                        </div>
+                    </div>
+                    <button class="return" onclick="return2()" type="button"/>
+                </div>
+                <div class="change-profile" id="about_us" style="display:none">
+                    <h2 class="my-heading3"> ChatBot </h2>
+                    <div class="my-ver3"> ver 2.0 </div>
+                    <div class="my-info4"> We can assist you to find some useful information about your study, such as the course, timetable or assignment. You could ask anything about your study, we will find the best answer for you. Beisdes, you can click the question tag on the right to get more detail about how to use me. I hope I can be of help for you, thank you for use. </div>
+                    <button class="return" onclick="return3()" type="button"/>
+                </div>              
+                <li class="setting">
+                    <ul class="menu" style="display:none">
+                        <li class="tag" onclick="user_detail_t()">User detail</li>
+                        <li class="tag" onclick="my_classes_t()">My courses</li>
+                        <li class="tag" onclick="edit_profile()">Edit profile</li>
+                        <li class="tag" onclick="our_info()">About us</li>
+                        <li class="tag" onclick="logout()">Logout</li>
+                    </ul>
+                </li>
+            </div>
+            <div class="chat-part">
+                <div id="chat_container" class="chat-container"> 
+                    <!-- return chat messages -->
+                </div>
+                <div class="input-part">
+                    <div class="function-part">
+                        <form id="target">
+                            <input type="submit" value="" class="submit" id="submit">
+                        </form>  
+                        <input type="file" id="image" accept="image/*" style="display:none"/>     
+                        <button type="button" class="pic" onclick="select_file()"/>
+                        <button type="button" class="help" onclick="get_help_t()"/>
+                    </div>
+                    <textarea class="input" type="text" id="input_message" onkeydown="checkEnter(event)" > </textarea> 
+                </div>
+             </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='custom.js')}}"></script>
+</body>
+</html>
